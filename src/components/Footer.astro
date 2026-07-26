@@ -12,7 +12,9 @@ const { data } = Astro.props;
     </div>
     <p class="footer__tagline">{data.tagline}</p>
   </div>
-  <a href={data.impressum.href} class="footer__link">{data.impressum.label}</a>
+  <nav class="footer__links">
+    {data.links.map((l) => <a href={l.href} class="footer__link">{l.label}</a>)}
+  </nav>
 </footer>
 <div class="subfooter">
   <span>{data.copyright}</span>

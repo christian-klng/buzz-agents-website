@@ -116,8 +116,12 @@ setzen (für korrekte `canonical`/OG-URLs).
 - GitHub-Repo-URL, Docs-URL, Signup-Ziel (alle Links zeigen aktuell auf Anker).
 - **Cloud-Preis „29 €" ist Platzhalter** (`src/i18n/de.ts` → `pricing`).
 - Zwei Produkt-Screenshots (aktuell Platzhalter in `Product.astro`).
-- Impressums-/Datenschutzseite (DE-Impressumspflicht + DSGVO) — Footer-Link
-  zeigt noch auf `#top`.
+- **Impressum & Datenschutz** liegen als Entwurf vor (`src/pages/impressum.astro`,
+  `src/pages/datenschutz.astro`, Layout `layouts/Legal.astro`). Vor Livegang
+  ausfüllen (Platzhalter `[ … ]`: Hosting-Anbieter, ggf. USt-IdNr., Telefon,
+  Log-Speicherdauer) und rechtlich prüfen (lassen). Die Datenschutzerklärung
+  beschreibt den aktuellen Stand: statisch, keine Cookies/Tracking, Schriften
+  lokal — bei neuen Diensten (Analytics, Formulare, Embeds) erweitern.
 
 ## Konventionen
 

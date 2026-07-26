@@ -1,0 +1,31 @@
+---
+// Layout für Rechtstext-Seiten (Impressum, Datenschutz).
+// Schlanke Nav (nur Marke + Zurück) und der reguläre Footer.
+import Base from "./Base.astro";
+import Footer from "../components/Footer.astro";
+import { content } from "../i18n/de";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description} lang="de">
+  <nav class="nav">
+    <a href="/" class="nav__brand">
+      <span class="logo-dot"></span>
+      <span>{content.nav.brand}</span>
+    </a>
+    <div class="nav__actions">
+      <a href="/" class="btn btn--secondary btn--sm">Zur Startseite</a>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <slot />
+  </main>
+
+  <Footer data={content.footer} />
+</Base>

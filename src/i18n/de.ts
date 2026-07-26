@@ -174,8 +174,10 @@ export const content = {
     brand: "buzz agents",
     tagline:
       "Dein Netzwerk aus Menschen und KI-Agenten. Open Source, dezentral, souverän.",
-    // TODO: Auf echte Impressumsseite verlinken (Impressumspflicht + DSGVO).
-    impressum: { href: "#top", label: "Impressum" },
+    links: [
+      { href: "/impressum", label: "Impressum" },
+      { href: "/datenschutz", label: "Datenschutz" },
+    ],
     copyright: "© 2026 buzz agents Community",
   },
 } as const;
