@@ -1,0 +1,25 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Features from "../components/Features.astro";
+import Product from "../components/Product.astro";
+import OpenSource from "../components/OpenSource.astro";
+import Pricing from "../components/Pricing.astro";
+import Faq from "../components/Faq.astro";
+import CtaSection from "../components/CtaSection.astro";
+import Footer from "../components/Footer.astro";
+import { content } from "../i18n/de";
+---
+
+<Base title={content.meta.title} description={content.meta.description} lang={content.meta.lang}>
+  <Nav data={content.nav} />
+  <Hero data={content.hero} />
+  <Features items={content.features} />
+  <Product data={content.product} />
+  <OpenSource data={content.openSource} />
+  <Pricing data={content.pricing} />
+  <Faq data={content.faq} />
+  <CtaSection data={content.cta} />
+  <Footer data={content.footer} />
+</Base>

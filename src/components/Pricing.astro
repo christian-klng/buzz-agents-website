@@ -1,0 +1,37 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["pricing"] };
+const { data } = Astro.props;
+---
+
+<section id="hosting" class="section">
+  <div class="pricing__head">
+    <p class="eyebrow">{data.eyebrow}</p>
+    <h2 class="h2">{data.headline}</h2>
+  </div>
+  <div class="pricing-grid">
+    {
+      data.cards.map((card) => (
+        <article class={`price-card${card.highlighted ? " price-card--highlight" : ""}`}>
+          {"badge" in card && card.badge && (
+            <span class="price-card__badge">{card.badge}</span>
+          )}
+          <div class="price-card__name">{card.name}</div>
+          <div class="price-card__price">{card.price}</div>
+          <div class="price-card__note">{card.priceNote}</div>
+          <div class="price-card__list">
+            {card.features.map((f) => (
+              <div>— {f}</div>
+            ))}
+          </div>
+          <a
+            href={card.cta.href}
+            class={`btn btn--block price-card__cta ${card.highlighted ? "btn--primary" : "btn--secondary"}`}
+          >
+            {card.cta.label}
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>

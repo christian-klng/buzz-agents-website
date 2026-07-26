@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#111310;font-family:'Figtree',sans-serif}a{color:inherit;text-decoration:none}a:hover{opacity:.8}</style>
+</helmet>
+<div style="background:#111310;color:#f0f1e6;min-height:100vh;padding:64px 56px 80px">
+
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(240,241,230,.14);padding-bottom:32px">
+  <div>
+    <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:14px">buzz agents Design System · v1</div>
+    <h1 style="margin:0;font-size:56px;letter-spacing:-.03em;font-weight:700">Signal</h1>
+  </div>
+  <a href="Buzz%20Landing.dc.html" style="font-size:14px;color:rgba(240,241,230,.6)">← Zur Landing Page</a>
+</div>
+
+<div style="margin-top:56px">
+  <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,241,230,.45);margin-bottom:20px">01 · Farben</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px">
+    <div><div style="height:110px;background:#111310;border:1px solid rgba(240,241,230,.2);border-radius:10px"></div><div style="margin-top:10px;font-weight:600;font-size:14px">Ink</div><div style="font-size:12.5px;color:rgba(240,241,230,.5)">#111310 · Hintergrund</div></div>
+    <div><div style="height:110px;background:#d5e021;border-radius:10px"></div><div style="margin-top:10px;font-weight:600;font-size:14px">Signal</div><div style="font-size:12.5px;color:rgba(240,241,230,.5)">#D5E021 · Akzent, CTA</div></div>
+    <div><div style="height:110px;background:#f0f1e6;border-radius:10px"></div><div style="margin-top:10px;font-weight:600;font-size:14px">Paper</div><div style="font-size:12.5px;color:rgba(240,241,230,.5)">#F0F1E6 · Text</div></div>
+    <div><div style="height:110px;background:#2a2d27;border-radius:10px"></div><div style="margin-top:10px;font-weight:600;font-size:14px">Moss</div><div style="font-size:12.5px;color:rgba(240,241,230,.5)">#2A2D27 · Flächen, Hover</div></div>
+    <div><div style="height:110px;background:rgba(240,241,230,.14);border-radius:10px"></div><div style="margin-top:10px;font-weight:600;font-size:14px">Hairline</div><div style="font-size:12.5px;color:rgba(240,241,230,.5)">Paper 14 % · Linien statt Karten</div></div>
+  </div>
+  <div style="margin-top:16px;font-size:14px;line-height:1.6;color:rgba(240,241,230,.55);max-width:640px;text-wrap:pretty">Regel: Signal nur für Akzente und primäre Aktionen — nie als Fläche für Fließtext. Sekundärtext ist Paper mit 60–70 % Deckkraft. Struktur entsteht durch 1px-Hairlines, nicht durch Karten-Schatten.</div>
+</div>
+
+<div style="margin-top:64px">
+  <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,241,230,.45);margin-bottom:20px">02 · Typografie — Figtree</div>
+  <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(240,241,230,.14)">
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(240,241,230,.14)"><div style="font-size:12.5px;color:rgba(240,241,230,.5)">Display · 84/700 · -3.5 %</div><div style="font-size:84px;line-height:1;letter-spacing:-.035em;font-weight:700">Souverän</div></div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(240,241,230,.14)"><div style="font-size:12.5px;color:rgba(240,241,230,.5)">H2 · 48/700 · -2.5 %</div><div style="font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:700">Sektions-Überschrift</div></div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(240,241,230,.14)"><div style="font-size:12.5px;color:rgba(240,241,230,.5)">H3 · 19/600</div><div style="font-size:19px;font-weight:600">Feature-Titel und Kartenköpfe</div></div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(240,241,230,.14)"><div style="font-size:12.5px;color:rgba(240,241,230,.5)">Body · 16/400 · 1.6</div><div style="font-size:16px;line-height:1.6;color:rgba(240,241,230,.68);max-width:560px">Fließtext in Paper mit 68 % Deckkraft. Kurze Sätze, Du-Form, professionell aber nahbar.</div></div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(240,241,230,.14)"><div style="font-size:12.5px;color:rgba(240,241,230,.5)">Eyebrow · 13/400 · +16 %</div><div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021">Sektions-Label in Signal</div></div>
+  </div>
+</div>
+
+<div style="margin-top:64px">
+  <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,241,230,.45);margin-bottom:20px">03 · Buttons &amp; Links</div>
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <span style="padding:16px 32px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:16px;cursor:pointer" style-hover="background:#e4ef3a">Primär</span>
+    <span style="padding:16px 32px;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:16px;cursor:pointer" style-hover="border-color:rgba(240,241,230,.7)">Sekundär</span>
+    <span style="padding:10px 20px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer">Primär S</span>
+    <span style="padding:10px 20px;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:14px;cursor:pointer">Sekundär S</span>
+    <span style="font-size:15px;color:rgba(240,241,230,.7);cursor:pointer" style-hover="color:#d5e021">Text-Link →</span>
+  </div>
+  <div style="margin-top:16px;font-size:14px;color:rgba(240,241,230,.55)">Pillenform (radius 999px). Hover: Primär hellt auf (#E4EF3A), Sekundär verstärkt den Rand. Keine Schatten.</div>
+</div>
+
+<div style="margin-top:64px">
+  <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,241,230,.45);margin-bottom:20px">04 · Formulare</div>
+  <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;max-width:720px">
+    <input placeholder="name@firma.de" style="flex:1;min-width:240px;padding:15px 22px;background:transparent;border:1px solid rgba(240,241,230,.3);border-radius:999px;color:#f0f1e6;font-size:15px;font-family:'Figtree',sans-serif;outline:none" style-focus="border-color:#d5e021">
+    <span style="padding:15px 30px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer">Anmelden</span>
+  </div>
+</div>
+
+<div style="margin-top:64px">
+  <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,241,230,.45);margin-bottom:20px">05 · Muster</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+    <div style="border:1px solid rgba(240,241,230,.14);border-radius:12px;padding:26px"><div style="color:#d5e021;font-size:13px;margin-bottom:12px">01</div><div style="font-weight:600;font-size:17px;margin-bottom:8px">Nummerierte Features</div><div style="font-size:14px;line-height:1.55;color:rgba(240,241,230,.6)">Grid mit Hairline-Trennern, Signal-Ziffer als einziges Ornament.</div></div>
+    <div style="border:1px solid rgba(240,241,230,.14);border-radius:12px;padding:26px"><div style="font-size:34px;font-weight:700;color:#d5e021">MIT</div><div style="font-size:14px;line-height:1.55;color:rgba(240,241,230,.6);margin-top:8px">Stat-Kachel: große Zahl in Signal, Erklärung darunter.</div></div>
+    <div style="border:1px solid #d5e021;border-radius:12px;padding:26px;background:rgba(213,224,33,.05);position:relative"><div style="position:absolute;top:-11px;left:24px;background:#d5e021;color:#111310;font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px">Empfohlen</div><div style="font-weight:600;font-size:17px;margin-top:4px">Hervorgehobene Karte</div><div style="font-size:14px;line-height:1.55;color:rgba(240,241,230,.6);margin-top:8px">Signal-Rand + 5 % Signal-Fläche + Badge — nur 1× pro Sektion.</div></div>
+  </div>
+  <div style="margin-top:16px;font-size:14px;line-height:1.6;color:rgba(240,241,230,.55);max-width:640px;text-wrap:pretty">Abstände: 56px Seitenränder, 90px vertikale Sektions-Polster, 8px-Raster. Kein Emoji, keine Verläufe, keine Illustrationen — Typografie und Hairlines tragen das Design.</div>
+</div>
+
+</div>
+</x-dc>
+</body>
+</html>

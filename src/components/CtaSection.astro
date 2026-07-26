@@ -1,0 +1,13 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["cta"] };
+const { data } = Astro.props;
+---
+
+<section class="section cta">
+  <h2 class="cta__title">{data.headline}</h2>
+  <div class="cta__actions">
+    <a href={data.ctaPrimary.href} class="btn btn--primary">{data.ctaPrimary.label}</a>
+    <a href={data.ctaSecondary.href} class="btn btn--secondary">{data.ctaSecondary.label}</a>
+  </div>
+</section>

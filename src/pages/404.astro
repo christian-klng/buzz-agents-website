@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+import { content } from "../i18n/de";
+---
+
+<Base title="Seite nicht gefunden — buzz agents" description="Diese Seite existiert nicht." lang="de">
+  <nav class="nav">
+    <a href="/" class="nav__brand">
+      <span class="logo-dot"></span>
+      <span>{content.nav.brand}</span>
+    </a>
+  </nav>
+  <section class="section cta" style="border-top:none">
+    <p class="eyebrow" style="text-align:center">Fehler 404</p>
+    <h2 class="cta__title">Diese Seite gibt es nicht.</h2>
+    <div class="cta__actions">
+      <a href="/" class="btn btn--primary">Zurück zur Startseite</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,23 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["nav"] };
+const { data } = Astro.props;
+---
+
+<nav class="nav">
+  <a href="#top" class="nav__brand">
+    <span class="logo-dot"></span>
+    <span>{data.brand}</span>
+  </a>
+  <div class="nav__links">
+    {data.links.map((l) => <a href={l.href}>{l.label}</a>)}
+  </div>
+  <div class="nav__actions">
+    <a href={data.ctaSecondary.href} class="btn btn--secondary btn--sm nav__github"
+      >{data.ctaSecondary.label}</a
+    >
+    <a href={data.ctaPrimary.href} class="btn btn--primary btn--sm"
+      >{data.ctaPrimary.label}</a
+    >
+  </div>
+</nav>

@@ -1,0 +1,102 @@
+---
+// Basis-Layout: Head, Fonts (DSGVO-konform selbst gehostet), globale Styles
+// und die clientseitige Interaktionslogik.
+import "@fontsource/figtree/400.css";
+import "@fontsource/figtree/500.css";
+import "@fontsource/figtree/600.css";
+import "@fontsource/figtree/700.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+
+const { title, description, lang = "de" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#111310" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111310'/%3E%3Ccircle cx='16' cy='16' r='9' fill='%23d5e021'/%3E%3C/svg%3E"
+    />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Nav schrumpft ab scrollY > 8; die untere Hairline blendet ein.
+      const nav = document.querySelector(".nav");
+      if (nav) {
+        const onScroll = () => {
+          nav.classList.toggle("nav--scrolled", window.scrollY > 8);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+
+      // Stats: gestaffeltes Einblenden + einmaliger Count-up von 0 auf 100 %.
+      const stats = document.querySelector<HTMLElement>(".stats");
+      if (stats) {
+        const runCountUp = () => {
+          const el = stats.querySelector<HTMLElement>("[data-count-up]");
+          if (!el) return;
+          const target = 100;
+          const dur = 1100;
+          let t0: number | null = null;
+          const step = (t: number) => {
+            if (t0 === null) t0 = t;
+            const p = Math.min(1, (t - t0) / dur);
+            const e = 1 - Math.pow(1 - p, 3); // cubic ease-out
+            el.textContent = Math.round(e * target) + " %";
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reveal = () => {
+          stats.classList.add("is-visible");
+          if (reduce) {
+            const el = stats.querySelector<HTMLElement>("[data-count-up]");
+            if (el) el.textContent = "100 %";
+          } else {
+            runCountUp();
+          }
+        };
+
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                reveal();
+                obs.disconnect();
+                break;
+              }
+            }
+          },
+          { threshold: 0, rootMargin: "0px 0px -15% 0px" },
+        );
+        io.observe(stats);
+      }
+    </script>
+  </body>
+</html>

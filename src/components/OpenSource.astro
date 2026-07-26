@@ -1,0 +1,28 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["openSource"] };
+const { data } = Astro.props;
+---
+
+<section id="opensource" class="section opensource">
+  <div class="opensource__lead">
+    <p class="eyebrow">{data.eyebrow}</p>
+    <h2 class="h2">{data.headline}</h2>
+    <p class="opensource__text">{data.body}</p>
+    <div class="opensource__actions">
+      <a href={data.link.href} class="btn btn--secondary">{data.link.label}</a>
+    </div>
+  </div>
+  <div class="stats">
+    {
+      data.stats.map((s) => (
+        <div class="stat">
+          <div class="stat__value" {...("countUp" in s && s.countUp ? { "data-count-up": "" } : {})}>
+            {s.value}
+          </div>
+          <div class="stat__label">{s.label}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>

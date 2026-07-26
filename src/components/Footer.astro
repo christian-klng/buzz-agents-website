@@ -1,0 +1,19 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["footer"] };
+const { data } = Astro.props;
+---
+
+<footer class="footer">
+  <div>
+    <div class="nav__brand">
+      <span class="logo-dot" style="width:20px;height:20px"></span>
+      <span style="font-size:17px">{data.brand}</span>
+    </div>
+    <p class="footer__tagline">{data.tagline}</p>
+  </div>
+  <a href={data.impressum.href} class="footer__link">{data.impressum.label}</a>
+</footer>
+<div class="subfooter">
+  <span>{data.copyright}</span>
+</div>

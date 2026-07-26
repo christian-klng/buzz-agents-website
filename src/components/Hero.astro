@@ -1,0 +1,15 @@
+---
+import type { Content } from "../i18n/de";
+type Props = { data: Content["hero"] };
+const { data } = Astro.props;
+---
+
+<header id="top" class="hero">
+  <p class="eyebrow" style="margin-bottom:24px">{data.eyebrow}</p>
+  <h1 class="hero__title">{data.headline}<span class="cursor" aria-hidden="true"></span></h1>
+  <p class="hero__sub">{data.subline}</p>
+  <div class="hero__actions">
+    <a href={data.ctaPrimary.href} class="btn btn--primary">{data.ctaPrimary.label}</a>
+    <a href={data.ctaSecondary.href} class="btn btn--secondary">{data.ctaSecondary.label}</a>
+  </div>
+</header>

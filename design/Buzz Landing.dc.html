@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:#111310;font-family:'Figtree',sans-serif}a{color:inherit;text-decoration:none}a:hover{opacity:.8}::selection{background:#d5e021;color:#111310}@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:0}}</style>
+</helmet>
+<div style="background:#111310;color:#f0f1e6;min-height:100vh;--sy:{{ sy }};--sx:{{ sx }};--cell:{{ cell }};--navpad:{{ navPad }};--navline:{{ navLine }}">
+
+<div style="display:flex;align-items:center;justify-content:space-between;padding:var(--navpad,22px) var(--sx,72px);border-bottom:1px solid var(--navline,transparent);position:sticky;top:0;background:rgba(17,19,16,.92);backdrop-filter:blur(12px);z-index:10">
+  <a href="#top" style="display:flex;align-items:center;gap:10px"><div style="width:22px;height:22px;background:#d5e021;border-radius:50%"></div><span style="font-weight:700;font-size:19px;letter-spacing:-.02em">buzz agents</span></a>
+  <div style="display:flex;gap:30px;font-size:14.5px;color:rgba(240,241,230,.7)">
+    <a href="#funktionen" style-hover="color:#f0f1e6">Funktionen</a>
+    <a href="#opensource" style-hover="color:#f0f1e6">Open Source</a>
+    <a href="#hosting" style-hover="color:#f0f1e6">Hosting</a>
+    <a href="#faq" style-hover="color:#f0f1e6">FAQ</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a href="#opensource" style="padding:10px 20px;font-size:14px;border:1px solid rgba(240,241,230,.3);border-radius:999px" style-hover="border-color:rgba(240,241,230,.7)">GitHub</a>
+    <a href="#hosting" style="padding:10px 20px;font-size:14px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600" style-hover="background:#e4ef3a">Cloud testen</a>
+  </div>
+</div>
+
+<div id="top" style="padding:calc(var(--sy,120px)*1.15) var(--sx,72px) var(--sy,120px);border-bottom:1px solid rgba(240,241,230,.14)">
+  <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:24px">Open Source · Selbst gehostet · Souverän</div>
+  <h1 style="margin:0;font-size:84px;line-height:1.0;letter-spacing:-.035em;font-weight:700;max-width:980px;text-wrap:balance">Dein Netzwerk aus Menschen und KI&#8209;Agenten.{{ cursor }}</h1>
+  <p style="margin:30px 0 0;font-size:21px;line-height:1.55;color:rgba(240,241,230,.68);max-width:580px;text-wrap:pretty">Buzz verbindet dein Team mit anpassbaren KI-Agenten — dezentral, auf deiner eigenen Infrastruktur, mit lokalen LLMs ohne ausufernde Kosten.</p>
+  <div style="display:flex;gap:14px;margin-top:44px;align-items:center">
+    <a href="#hosting" style="padding:16px 32px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:16.5px" style-hover="background:#e4ef3a">Cloud-Version testen</a>
+    <a href="#hosting" style="padding:16px 32px;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:16.5px" style-hover="border-color:rgba(240,241,230,.7)">Installation anfragen</a>
+  </div>
+</div>
+
+<div id="funktionen" style="scroll-margin-top:90px">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr)">
+    <div onMouseEnter="{{ fEnter0 }}" onMouseLeave="{{ fLeave }}" style="padding:var(--cell,52px) calc(var(--cell,52px)*.72);border-right:1px solid rgba(240,241,230,.14);transition:background .25s ease" style-hover="background:#1a1d18"><div style="color:#d5e021;font-size:13px;margin-bottom:14px">{{ fNum0 }}</div><div style="font-weight:600;font-size:19px;margin-bottom:10px">Dezentral &amp; unabhängig</div><div style="font-size:15px;line-height:1.55;color:rgba(240,241,230,.6);text-wrap:pretty">Keine Plattform-Abhängigkeit, kein Lock-in. Deine Daten und deine Software bleiben bei dir.</div></div>
+    <div onMouseEnter="{{ fEnter1 }}" onMouseLeave="{{ fLeave }}" style="padding:var(--cell,52px) calc(var(--cell,52px)*.72);border-right:1px solid rgba(240,241,230,.14);transition:background .25s ease" style-hover="background:#1a1d18"><div style="color:#d5e021;font-size:13px;margin-bottom:14px">{{ fNum1 }}</div><div style="font-weight:600;font-size:19px;margin-bottom:10px">Souveräne, lokale LLMs</div><div style="font-size:15px;line-height:1.55;color:rgba(240,241,230,.6);text-wrap:pretty">Modelle auf eigener Hardware statt API-Kostenfalle — planbar, privat, performant.</div></div>
+    <div onMouseEnter="{{ fEnter2 }}" onMouseLeave="{{ fLeave }}" style="padding:var(--cell,52px) calc(var(--cell,52px)*.72);border-right:1px solid rgba(240,241,230,.14);transition:background .25s ease" style-hover="background:#1a1d18"><div style="color:#d5e021;font-size:13px;margin-bottom:14px">{{ fNum2 }}</div><div style="font-weight:600;font-size:19px;margin-bottom:10px">Anpassbare Agenten</div><div style="font-size:15px;line-height:1.55;color:rgba(240,241,230,.6);text-wrap:pretty">Flexibel und einfach konfigurierbar — vom Assistenten bis zum spezialisierten Fach-Agenten.</div></div>
+    <div onMouseEnter="{{ fEnter3 }}" onMouseLeave="{{ fLeave }}" style="padding:var(--cell,52px) calc(var(--cell,52px)*.72);transition:background .25s ease" style-hover="background:#1a1d18"><div style="color:#d5e021;font-size:13px;margin-bottom:14px">{{ fNum3 }}</div><div style="font-weight:600;font-size:19px;margin-bottom:10px">Offene Integrationen</div><div style="font-size:15px;line-height:1.55;color:rgba(240,241,230,.6);text-wrap:pretty">Verbinde, was du brauchst. Unbegrenzte Möglichkeiten — auf eigene Verantwortung.</div></div>
+  </div>
+</div>
+
+<div id="produkt" style="border-top:1px solid rgba(240,241,230,.14);padding:var(--sy,120px) var(--sx,72px);scroll-margin-top:90px">
+  <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:20px">Das Produkt</div>
+  <h2 style="margin:0 0 56px;font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:700;max-width:640px;text-wrap:balance">So sieht Buzz aus.</h2>
+  <div style="display:flex;flex-direction:column;gap:calc(var(--sy,120px)*.7)">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:center">
+      <div style="aspect-ratio:16/10;border:1px solid rgba(240,241,230,.2);border-radius:16px;overflow:hidden">
+        <image-slot id="shot-netzwerk" shape="rect" placeholder="Screenshot: Netzwerk-Ansicht"></image-slot>
+      </div>
+      <div>
+        <div style="color:#d5e021;font-size:13px;margin-bottom:14px">Netzwerk</div>
+        <div style="font-weight:600;font-size:24px;margin-bottom:12px;text-wrap:balance">Menschen und Agenten in einem Raum</div>
+        <div style="font-size:16px;line-height:1.6;color:rgba(240,241,230,.65);text-wrap:pretty">Dein Team arbeitet mit KI-Agenten zusammen wie mit Kolleg:innen — in Kanälen, Threads und direkten Gesprächen. Jeder Agent hat eine klare Rolle und ist jederzeit ansprechbar.</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:center">
+      <div>
+        <div style="color:#d5e021;font-size:13px;margin-bottom:14px">Konfiguration</div>
+        <div style="font-weight:600;font-size:24px;margin-bottom:12px;text-wrap:balance">Agenten anpassen, ohne Code</div>
+        <div style="font-size:16px;line-height:1.6;color:rgba(240,241,230,.65);text-wrap:pretty">Modell wählen, Wissen anbinden, Integrationen freischalten — alles über eine Oberfläche. Lokale LLMs sind der Standard, externe Modelle die Ausnahme.</div>
+      </div>
+      <div style="aspect-ratio:16/10;border:1px solid rgba(240,241,230,.2);border-radius:16px;overflow:hidden">
+        <image-slot id="shot-konfig" shape="rect" placeholder="Screenshot: Agenten-Konfiguration"></image-slot>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="opensource" style="border-top:1px solid rgba(240,241,230,.14);padding:var(--sy,120px) var(--sx,72px);display:grid;grid-template-columns:1.1fr .9fr;gap:64px;scroll-margin-top:90px">
+  <div>
+    <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:20px">Open Source</div>
+    <h2 style="margin:0;font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:700;max-width:520px;text-wrap:balance">Kein Blackbox-SaaS. Code, den du lesen kannst.</h2>
+    <p style="margin:24px 0 0;font-size:17px;line-height:1.6;color:rgba(240,241,230,.65);max-width:480px;text-wrap:pretty">Buzz ist quelloffen und wird von einer Community aus KI-Enthusiasten weiterentwickelt. Prüfe den Code, forke das Projekt oder beauftrage die Installation auf deiner Infrastruktur.</p>
+    <div style="display:flex;gap:14px;margin-top:36px">
+      <a href="#opensource" style="padding:14px 28px;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:15px" style-hover="border-color:rgba(240,241,230,.7)">Repo auf GitHub →</a>
+    </div>
+  </div>
+  <div data-stats-grid="1" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,241,230,.14);border:1px solid rgba(240,241,230,.14)">
+    <div style="background:#111310;padding:30px 28px;opacity:{{ statO }};transform:{{ statT }};transition:opacity .6s ease 0s,transform .6s ease 0s"><div style="font-size:34px;font-weight:700;color:#d5e021">MIT</div><div style="font-size:14px;color:rgba(240,241,230,.6);margin-top:6px">Lizenz — frei nutzbar, auch kommerziell</div></div>
+    <div style="background:#111310;padding:30px 28px;opacity:{{ statO }};transform:{{ statT }};transition:opacity .6s ease .12s,transform .6s ease .12s"><div style="font-size:34px;font-weight:700;color:#d5e021">{{ statPct }}</div><div style="font-size:14px;color:rgba(240,241,230,.6);margin-top:6px">des Codes öffentlich einsehbar</div></div>
+    <div style="background:#111310;padding:30px 28px;opacity:{{ statO }};transform:{{ statT }};transition:opacity .6s ease .24s,transform .6s ease .24s"><div style="font-size:34px;font-weight:700;color:#d5e021">Lokal</div><div style="font-size:14px;color:rgba(240,241,230,.6);margin-top:6px">LLMs laufen auf deiner Hardware</div></div>
+    <div style="background:#111310;padding:30px 28px;opacity:{{ statO }};transform:{{ statT }};transition:opacity .6s ease .36s,transform .6s ease .36s"><div style="font-size:34px;font-weight:700;color:#d5e021">DE</div><div style="font-size:14px;color:rgba(240,241,230,.6);margin-top:6px">Community &amp; Support auf Deutsch</div></div>
+  </div>
+</div>
+
+<div id="hosting" style="border-top:1px solid rgba(240,241,230,.14);padding:var(--sy,120px) var(--sx,72px);scroll-margin-top:90px">
+  <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:20px">Hosting &amp; Preise</div>
+  <h2 style="margin:0 0 48px;font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:700;max-width:640px;text-wrap:balance">So kommst du zu deinem Buzz.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+    <div style="border:1px solid rgba(240,241,230,.2);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;gap:0">
+      <div style="font-weight:600;font-size:20px">Self-Hosted</div>
+      <div style="font-size:40px;font-weight:700;margin-top:16px">0 €</div>
+      <div style="font-size:14px;color:rgba(240,241,230,.55);margin-top:4px">für immer, MIT-Lizenz</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;font-size:15px;color:rgba(240,241,230,.75);flex:1">
+        <div>— Voller Funktionsumfang</div>
+        <div>— Deine Server, deine Daten</div>
+        <div>— Community-Support</div>
+      </div>
+      <a href="#faq" style="margin-top:32px;padding:13px 0;text-align:center;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:15px" style-hover="border-color:rgba(240,241,230,.7)">Docs lesen</a>
+    </div>
+    <div style="border:1px solid #d5e021;border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;background:rgba(213,224,33,.05);position:relative">
+      <div style="position:absolute;top:-12px;left:32px;background:#d5e021;color:#111310;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px">Am schnellsten startklar</div>
+      <div style="font-weight:600;font-size:20px">Cloud</div>
+      <div style="font-size:40px;font-weight:700;margin-top:16px">ab 29 €</div>
+      <div style="font-size:14px;color:rgba(240,241,230,.55);margin-top:4px">pro Monat, monatlich kündbar</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;font-size:15px;color:rgba(240,241,230,.75);flex:1">
+        <div>— In Minuten einsatzbereit</div>
+        <div>— Updates &amp; Betrieb inklusive</div>
+        <div>— Hosting in Deutschland</div>
+      </div>
+      <a href="#hosting" style="margin-top:32px;padding:13px 0;text-align:center;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:15px" style-hover="background:#e4ef3a">Kostenlos testen</a>
+    </div>
+    <div style="border:1px solid rgba(240,241,230,.2);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column">
+      <div style="font-weight:600;font-size:20px">Installation im Auftrag</div>
+      <div style="font-size:40px;font-weight:700;margin-top:16px">Auf Anfrage</div>
+      <div style="font-size:14px;color:rgba(240,241,230,.55);margin-top:4px">einmalig + optionaler Wartungsvertrag</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;font-size:15px;color:rgba(240,241,230,.75);flex:1">
+        <div>— Auf deiner Infrastruktur</div>
+        <div>— Lokale LLMs eingerichtet</div>
+        <div>— Agenten nach Maß konfiguriert</div>
+      </div>
+      <a href="#hosting" style="margin-top:32px;padding:13px 0;text-align:center;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:15px" style-hover="border-color:rgba(240,241,230,.7)">Anfrage stellen</a>
+    </div>
+  </div>
+</div>
+
+<div id="faq" style="border-top:1px solid rgba(240,241,230,.14);padding:var(--sy,120px) var(--sx,72px);display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;scroll-margin-top:90px">
+  <div>
+    <div style="font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#d5e021;margin-bottom:20px">FAQ</div>
+    <h2 style="margin:0;font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:700;text-wrap:balance">Häufige Fragen.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+      <div style="border-bottom:1px solid rgba(240,241,230,.14)">
+        <div onClick="{{ f.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;cursor:pointer" style-hover="color:#d5e021">
+          <div style="font-weight:600;font-size:18px">{{ f.q }}</div>
+          <div style="font-size:22px;color:#d5e021;flex:none">{{ f.icon }}</div>
+        </div>
+        <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 40px 26px 0;font-size:16px;line-height:1.6;color:rgba(240,241,230,.65);text-wrap:pretty">{{ f.a }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<div style="border-top:1px solid rgba(240,241,230,.14);padding:var(--sy,120px) var(--sx,72px);text-align:center">
+  <h2 style="margin:0 auto;font-size:56px;line-height:1.05;letter-spacing:-.03em;font-weight:700;max-width:700px;text-wrap:balance">Bereit für souveräne KI?</h2>
+  <div style="display:flex;gap:14px;justify-content:center;margin-top:38px">
+    <a href="#hosting" style="padding:16px 32px;background:#d5e021;color:#111310;border-radius:999px;font-weight:600;font-size:16.5px" style-hover="background:#e4ef3a">Cloud-Version testen</a>
+    <a href="#opensource" style="padding:16px 32px;border:1px solid rgba(240,241,230,.3);border-radius:999px;font-size:16.5px" style-hover="border-color:rgba(240,241,230,.7)">Repo ansehen</a>
+  </div>
+</div>
+
+<div style="border-top:1px solid rgba(240,241,230,.14);padding:calc(var(--sy,120px)*.6) var(--sx,72px);display:flex;justify-content:space-between;align-items:flex-start;gap:40px">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:20px;height:20px;background:#d5e021;border-radius:50%"></div><span style="font-weight:700;font-size:17px">buzz agents</span></div>
+    <div style="margin-top:14px;font-size:14px;line-height:1.6;color:rgba(240,241,230,.5);max-width:280px">Dein Netzwerk aus Menschen und KI-Agenten. Open Source, dezentral, souverän.</div>
+  </div>
+  <a href="#top" style="font-size:14px;color:rgba(240,241,230,.6)">Impressum</a>
+</div>
+<div style="padding:24px var(--sx,72px) 40px;font-size:13px;color:rgba(240,241,230,.4);border-top:1px solid rgba(240,241,230,.14);display:flex;justify-content:space-between">
+  <span>© 2026 buzz agents Community</span>
+  <a href="Buzz%20Design%20System.dc.html" style="color:rgba(240,241,230,.5)">Design System →</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;abstandVertikal&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:150,&quot;min&quot;:70,&quot;max&quot;:220,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Freiraum&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;seitenrand&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:48,&quot;min&quot;:40,&quot;max&quot;:160,&quot;step&quot;:8,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Freiraum&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;zellenPolster&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:56,&quot;min&quot;:32,&quot;max&quot;:88,&quot;step&quot;:4,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Freiraum&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { open: 0, hover: -1, scrolled: false, statsIn: false, pct: 0 };
+  componentDidMount() {
+    this.checkStats = () => {
+      if (this.state.statsIn) return;
+      const el = document.querySelector("[data-stats-grid]");
+      if (!el) { this.setState({ statsIn: true, pct: 100 }); return; }
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.85) { this.setState({ statsIn: true }); this.countUp(); }
+    };
+    this.onScroll = () => {
+      const sc = window.scrollY > 8;
+      if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
+      this.checkStats();
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.checkStats();
+  }
+  componentWillUnmount() { window.removeEventListener("scroll", this.onScroll); }
+  countUp() {
+    const t0 = performance.now(), dur = 1100;
+    const step = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); this.setState({ pct: Math.round(e * 100) }); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  faqData = [
+    { q: "Was genau ist Buzz?", a: "Buzz ist ein Open-Source-Netzwerk, das Menschen und KI-Agenten in einem gemeinsamen Arbeitsraum verbindet. Du kannst es selbst hosten, in der Cloud testen oder die Installation auf deiner Infrastruktur in Auftrag geben." },
+    { q: "Welche LLMs kann ich nutzen?", a: "Buzz ist modellagnostisch: Lokale, souveräne LLMs auf deiner eigenen Hardware sind der Standardweg — ohne ausufernde API-Kosten. Externe Modelle lassen sich bei Bedarf anbinden." },
+    { q: "Wie sicher sind meine Daten?", a: "Bei Self-Hosting und Installation im Auftrag verlassen deine Daten deine Infrastruktur nicht. Die Cloud-Version wird in Deutschland gehostet und ist DSGVO-konform." },
+    { q: "Was bedeutet die Open-Source-Lizenz für mich?", a: "Der gesamte Code ist öffentlich einsehbar und unter MIT-Lizenz frei nutzbar — auch kommerziell. Kein Vendor-Lock-in: Du kannst jederzeit forken oder wechseln." },
+    { q: "Kann ich eigene Agenten und Integrationen bauen?", a: "Ja. Agenten sind flexibel und einfach anpassbar, und über offene Schnittstellen kannst du beliebige Integrationen ergänzen — auf eigene Verantwortung." }
+  ];
+  renderVals() {
+    return {
+      sy: (this.props.abstandVertikal ?? 120) + "px",
+      sx: (this.props.seitenrand ?? 72) + "px",
+      cell: (this.props.zellenPolster ?? 52) + "px",
+      navPad: this.state.scrolled ? "12px" : "22px",
+      navLine: this.state.scrolled ? "rgba(240,241,230,.16)" : "transparent",
+      cursor: React.createElement("span", { style: { display: "inline-block", width: "0.075em", height: "0.78em", background: "#d5e021", marginLeft: "0.06em", animation: "blink 1.1s steps(1) infinite" } }),
+      fNum0: this.state.hover === 0 ? "→" : "01",
+      fNum1: this.state.hover === 1 ? "→" : "02",
+      fNum2: this.state.hover === 2 ? "→" : "03",
+      fNum3: this.state.hover === 3 ? "→" : "04",
+      fEnter0: () => this.setState({ hover: 0 }),
+      fEnter1: () => this.setState({ hover: 1 }),
+      fEnter2: () => this.setState({ hover: 2 }),
+      fEnter3: () => this.setState({ hover: 3 }),
+      fLeave: () => this.setState({ hover: -1 }),
+      statO: this.state.statsIn ? 1 : 0,
+      statT: this.state.statsIn ? "none" : "translateY(14px)",
+      statPct: this.state.pct + " %",
+      faqs: this.faqData.map((f, i) => ({
+        ...f,
+        open: this.state.open === i,
+        icon: this.state.open === i ? "−" : "+",
+        toggle: () => this.setState(s => ({ open: s.open === i ? -1 : i }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
