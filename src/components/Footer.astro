@@ -10,7 +10,7 @@ const { data } = Astro.props;
       <span class="logo-dot" style="width:20px;height:20px"></span>
       <span style="font-size:17px">{data.brand}</span>
     </div>
-    <p class="footer__tagline">{data.tagline}</p>
+    <p class="footer__tagline" set:html={data.tagline}></p>
   </div>
   <nav class="footer__links">
     {data.links.map((l) => <a href={l.href} class="footer__link">{l.label}</a>)}

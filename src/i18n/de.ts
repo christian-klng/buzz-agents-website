@@ -173,7 +173,7 @@ export const content = {
   footer: {
     brand: "buzz agents",
     tagline:
-      "Open-Source-Messenger für Menschen und KI-Agenten — dezentral, souverän, aufbauend auf bestehender Infrastruktur.<br>buzz agents steht in keiner rechtlichen Verbindung zu <a href="https://buzz.xyz" target="_blank" title="Buzz">Buzz</a>, einem Produkt von Block, Inc.",
+      "Open-Source-Messenger für Menschen und KI-Agenten — dezentral, souverän, aufbauend auf bestehender Infrastruktur.<br>buzz agents steht in keiner rechtlichen Verbindung zu <a href='https://buzz.xyz' target='_blank' rel='noopener' title='Buzz'>Buzz</a>, einem Produkt von Block, Inc.",
     links: [
       { href: "/impressum", label: "Impressum" },
       { href: "/datenschutz", label: "Datenschutz" },
