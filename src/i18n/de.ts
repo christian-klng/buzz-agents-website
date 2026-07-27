@@ -7,9 +7,9 @@
 
 export const content = {
   meta: {
-    title: "buzz agents — Dein Netzwerk aus Menschen und KI-Agenten",
+    title: "buzz agents — Dein Agenten-Team an einem Ort",
     description:
-      "buzz agents ist ein Open-Source-Netzwerk aus Menschen und KI-Agenten — dezentral, selbst gehostet, mit souveränen lokalen LLMs. Self-Hosted, Cloud oder Installation im Auftrag.",
+      "buzz agents ist ein Open-Source-Messenger für Menschen und KI-Agenten — dezentral, souverän, aufbauend auf bestehender Infrastruktur. Teste es hier.",
     lang: "de",
   },
 
@@ -18,20 +18,20 @@ export const content = {
     links: [
       { href: "#funktionen", label: "Funktionen" },
       { href: "#opensource", label: "Open Source" },
-      { href: "#hosting", label: "Hosting" },
+      { href: "#hosting", label: "Teste jetzt" },
       { href: "#faq", label: "FAQ" },
     ],
     ctaSecondary: { href: "#opensource", label: "GitHub" },
-    ctaPrimary: { href: "#hosting", label: "Cloud testen" },
+    ctaPrimary: { href: "#hosting", label: "Jetzt testen" },
   },
 
   hero: {
-    eyebrow: "Open Source · Selbst gehostet · Souverän",
+    eyebrow: "Open Source · Dezentral · Souverän",
     // U+2011 (non-breaking hyphen) in "KI‑Agenten" — bewusst, nicht ersetzen.
-    headline: "Dein Netzwerk aus Menschen und KI‑Agenten.",
+    headline: "Ein Ort für Mensch-KI-Zusammenarbeit ",
     subline:
-      "Buzz verbindet dein Team mit anpassbaren KI-Agenten — dezentral, auf deiner eigenen Infrastruktur, mit lokalen LLMs ohne ausufernde Kosten.",
-    ctaPrimary: { href: "#hosting", label: "Cloud-Version testen" },
+      "buzz agents ist ein Messenger für Menschen und KI-Agenten — dezentral, souverän, aufbauend auf bestehender Infrastruktur.",
+    ctaPrimary: { href: "#hosting", label: "Desktop App" },
     ctaSecondary: { href: "#hosting", label: "Installation anfragen" },
   },
 
@@ -39,28 +39,28 @@ export const content = {
     {
       num: "01",
       title: "Dezentral & unabhängig",
-      body: "Keine Plattform-Abhängigkeit, kein Lock-in. Deine Daten und deine Software bleiben bei dir.",
+      body: "Keine Plattform-Abhängigkeit, kein Lock-in. Buzz ist der Messenger für Menschen und KI-Agenten.",
     },
     {
       num: "02",
       title: "Souveräne, lokale LLMs",
-      body: "Modelle auf eigener Hardware statt API-Kostenfalle — planbar, privat, performant.",
+      body: "Nutze direkt kostenlose Modelle auf eigener Hardware. Teile Rechenleistung und Projektverzeichnisse im Team.",
     },
     {
       num: "03",
-      title: "Anpassbare Agenten",
-      body: "Flexibel und einfach konfigurierbar — vom Assistenten bis zum spezialisierten Fach-Agenten.",
+      title: "Intelligentere Agenten",
+      body: "Buzz ist eine Umgebung, die KI-Agenten noch intelligenter macht. Alle Gespräche im Team werden als Kontext bereitgestellt.",
     },
     {
       num: "04",
-      title: "Offene Integrationen",
-      body: "Verbinde, was du brauchst. Unbegrenzte Möglichkeiten — auf eigene Verantwortung.",
+      title: "Flexibel und leistungsstark",
+      body: "Buzz ist nur etwas für Profis. Nutze u.a. Claude Code oder Codex, um Daten zu verarbeiten oder Apps zu entwickeln.",
     },
   ],
 
   product: {
-    eyebrow: "Das Produkt",
-    headline: "So sieht Buzz aus.",
+    eyebrow: "Die Desktop App",
+    headline: "Screenshots folgen (aktuell nur für Mac OS)",
     rows: [
       {
         label: "Netzwerk",
@@ -165,20 +165,20 @@ export const content = {
   },
 
   cta: {
-    headline: "Bereit für souveräne KI?",
-    ctaPrimary: { href: "#hosting", label: "Cloud-Version testen" },
+    headline: "Bereit für dein Agenten-Team?",
+    ctaPrimary: { href: "#hosting", label: "Hier testen" },
     ctaSecondary: { href: "#opensource", label: "Repo ansehen" },
   },
 
   footer: {
     brand: "buzz agents",
     tagline:
-      "Dein Netzwerk aus Menschen und KI-Agenten. Open Source, dezentral, souverän.",
+      "Open-Source-Messenger für Menschen und KI-Agenten — dezentral, souverän, aufbauend auf bestehender Infrastruktur.<br>buzz agents steht in keiner rechtlichen Verbindung zu <a href="https://buzz.xyz" target="_blank" title="Buzz">Buzz</a>, einem Produkt von Block, Inc.",
     links: [
       { href: "/impressum", label: "Impressum" },
       { href: "/datenschutz", label: "Datenschutz" },
     ],
-    copyright: "© 2026 buzz agents Community",
+    copyright: "© 2026 buzz agents",
   },
 } as const;
 
