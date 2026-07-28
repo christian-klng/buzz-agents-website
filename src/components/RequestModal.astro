@@ -1,0 +1,419 @@
+---
+// Wiederverwendbares Anfrage-Modal (natives <dialog>, kein Framework).
+//
+// Felder und Texte kommen aus src/i18n/de.ts → `forms`. Geöffnet wird das
+// Modal von jedem Element mit `data-modal="<id>"`; ohne JS bleibt dessen
+// `href` als Fallback wirksam (Progressive Enhancement wie bei den Stats).
+//
+// Versand: Das Formular baut aus den Eingaben eine fertige E-Mail und öffnet
+// sie per `mailto:` im Mail-Programm des Nutzers. Es gibt bewusst keinen
+// Server, der die Daten entgegennimmt — die Seite bleibt statisch und es
+// werden keine Formulardaten an uns übertragen (siehe CLAUDE.md).
+import type { Content } from "../i18n/de";
+
+type Props = {
+  form: Content["forms"]["alpha"];
+  messages: Content["forms"]["messages"];
+};
+
+const { form, messages } = Astro.props;
+
+// Reihenfolge und Beschriftung der Zeilen in der fertigen E-Mail.
+const mailFields = form.fields.map((f) => ({
+  name: f.name,
+  label: "mailLabel" in f ? f.mailLabel : f.label,
+}));
+
+const titleId = `${form.id}-title`;
+const successTitleId = `${form.id}-success-title`;
+const manualId = `${form.id}-manual`;
+---
+
+<dialog
+  class="modal"
+  data-modal-id={form.id}
+  data-mailto={form.mailTo}
+  data-mail-subject={form.mailSubject}
+  data-mail-fields={JSON.stringify(mailFields)}
+  data-rule={form.rule}
+  data-messages={JSON.stringify(messages)}
+  aria-labelledby={titleId}
+>
+  <div class="modal__panel" tabindex="-1" data-modal-panel>
+    <button
+      type="button"
+      class="modal__close"
+      data-modal-close
+      aria-label={form.closeLabel}>×</button
+    >
+
+    <div data-modal-view="form">
+      <p class="eyebrow">{form.eyebrow}</p>
+      <h2 class="modal__title" id={titleId}>{form.headline}</h2>
+      <p class="modal__intro">{form.intro}</p>
+
+      <form class="form" novalidate data-modal-form>
+        {
+          form.fields.map((f) => {
+            const fieldId = `${form.id}-${f.name}`;
+            const helpId = `${fieldId}-help`;
+            const errorId = `${fieldId}-error`;
+            const describedBy = [f.help ? helpId : null, errorId]
+              .filter(Boolean)
+              .join(" ");
+            return (
+              <div class="form__row">
+                <label class="form__label" for={fieldId}>
+                  {f.label}
+                  {f.required && (
+                    <span class="form__req" aria-hidden="true">
+                      {" *"}
+                    </span>
+                  )}
+                </label>
+                {f.type === "textarea" ? (
+                  <textarea
+                    id={fieldId}
+                    name={f.name}
+                    class="form__input form__input--area"
+                    rows="4"
+                    placeholder={f.placeholder}
+                    maxlength={f.maxlength}
+                    autocomplete={f.autocomplete}
+                    data-required={f.required ? "" : null}
+                    aria-describedby={describedBy}
+                  />
+                ) : (
+                  <input
+                    id={fieldId}
+                    name={f.name}
+                    type={f.type}
+                    class="form__input"
+                    placeholder={f.placeholder}
+                    maxlength={f.maxlength}
+                    autocomplete={f.autocomplete}
+                    data-required={f.required ? "" : null}
+                    aria-describedby={describedBy}
+                  />
+                )}
+                {f.help && (
+                  <p class="form__help" id={helpId}>
+                    {f.help}
+                  </p>
+                )}
+                <p class="form__error" id={errorId} data-error-for={f.name} hidden />
+              </div>
+            );
+          })
+        }
+
+        {/* Honeypot gegen Bots — für Menschen unsichtbar und nicht fokussierbar. */}
+        <div class="form__hp" aria-hidden="true">
+          <label for={`${form.id}-website`}>Website (bitte frei lassen)</label>
+          <input
+            id={`${form.id}-website`}
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <p class="form__note" set:html={form.note} />
+
+        <button type="submit" class="btn btn--primary btn--block form__submit"
+          >{form.submitLabel}</button
+        >
+      </form>
+    </div>
+
+    <div data-modal-view="success" hidden>
+      <p class="eyebrow">{form.eyebrow}</p>
+      <h2 class="modal__title" id={successTitleId}>{form.success.headline}</h2>
+      <p class="modal__intro">{form.success.body}</p>
+
+      <div class="modal__fallback">
+        <p class="form__help">
+          {form.fallback.body}{" "}
+          <a href={`mailto:${form.mailTo}`}>{form.mailTo}</a>.
+        </p>
+        <button
+          type="button"
+          class="btn btn--secondary btn--sm"
+          data-copy
+          data-copy-label={form.fallback.copyLabel}
+          data-copied-label={form.fallback.copiedLabel}>{form.fallback.copyLabel}</button
+        >
+        {/* Sichtbar erst, wenn das Kopieren technisch nicht möglich war. */}
+        <label class="form__label form__label--manual" for={manualId} hidden data-manual-label
+          >{form.fallback.manualLabel}</label
+        >
+        <textarea
+          id={manualId}
+          class="form__input form__input--area"
+          rows="7"
+          readonly
+          hidden
+          data-manual></textarea>
+      </div>
+
+      <button type="button" class="btn btn--secondary btn--block" data-modal-close
+        >{form.closeLabel}</button
+      >
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // Freemail-Anbieter: Wer eine dieser Adressen angibt, muss zusätzlich das
+  // LinkedIn-Profil hinterlegen (Regel "linkedinOrCompanyEmail").
+  const FREEMAIL = new Set([
+    "gmail.com", "googlemail.com", "web.de", "gmx.de", "gmx.net", "gmx.at",
+    "gmx.ch", "gmx.com", "t-online.de", "freenet.de", "arcor.de", "online.de",
+    "outlook.com", "outlook.de", "hotmail.com", "hotmail.de", "live.com",
+    "live.de", "msn.com", "yahoo.com", "yahoo.de", "ymail.com", "aol.com",
+    "icloud.com", "me.com", "mac.com", "proton.me", "protonmail.com",
+    "pm.me", "posteo.de", "mailbox.org", "mail.com", "mail.de", "zoho.com",
+    "yandex.com", "yandex.ru", "hey.com", "fastmail.com", "tutanota.com",
+    "tuta.com",
+  ]);
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+  const LINKEDIN_RE = /^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/.+/i;
+
+  // Praktische Obergrenze für mailto:-URLs. Der Standard kennt keine, aber
+  // einige Mail-Programme unter Windows schneiden jenseits von ~2000 Zeichen
+  // ab. Wird sie überschritten, kürzen wir das letzte Feld statt eine
+  // kaputte Mail zu öffnen.
+  const MAILTO_MAX = 1900;
+
+  type Messages = {
+    required: string;
+    email: string;
+    linkedin: string;
+    linkedinRequired: string;
+  };
+
+  type MailField = { name: string; label: string };
+
+  function setupModal(dialog: HTMLDialogElement) {
+    const id = dialog.dataset.modalId;
+    const form = dialog.querySelector<HTMLFormElement>("[data-modal-form]");
+    const panel = dialog.querySelector<HTMLElement>("[data-modal-panel]");
+    const formView = dialog.querySelector<HTMLElement>('[data-modal-view="form"]');
+    const successView = dialog.querySelector<HTMLElement>('[data-modal-view="success"]');
+    if (!id || !form || !panel || !formView || !successView) return;
+
+    const messages: Messages = JSON.parse(dialog.dataset.messages || "{}");
+    const mailFields: MailField[] = JSON.parse(dialog.dataset.mailFields || "[]");
+    const formTitleId = dialog.getAttribute("aria-labelledby") || "";
+    let scrollbarPad = "";
+
+    // --- Öffnen / Schließen ------------------------------------------------
+    const open = () => {
+      dialog.showModal();
+      // Der Scrollbalken der Seite würde sonst unter dem Modal weiterlaufen.
+      const gap = window.innerWidth - document.documentElement.clientWidth;
+      scrollbarPad = document.body.style.paddingRight;
+      document.body.style.overflow = "hidden";
+      if (gap > 0) document.body.style.paddingRight = `${gap}px`;
+      panel.focus();
+    };
+
+    for (const trigger of document.querySelectorAll<HTMLElement>(`[data-modal="${id}"]`)) {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        open();
+      });
+    }
+
+    for (const closer of dialog.querySelectorAll<HTMLElement>("[data-modal-close]")) {
+      closer.addEventListener("click", () => dialog.close());
+    }
+
+    // Klick auf den Backdrop (nicht auf das Panel) schließt ebenfalls.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("close", () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = scrollbarPad;
+      // Nach einer erfolgreichen Anfrage für den nächsten Aufruf zurücksetzen.
+      if (!successView.hidden) {
+        successView.hidden = true;
+        formView.hidden = false;
+        dialog.setAttribute("aria-labelledby", formTitleId);
+        form.reset();
+      }
+    });
+
+    // --- Validierung -------------------------------------------------------
+    const errorFor = (name: string) =>
+      dialog.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+
+    const setError = (name: string, message: string) => {
+      const el = errorFor(name);
+      const field = form.elements.namedItem(name);
+      if (el) {
+        el.textContent = message;
+        el.hidden = !message;
+      }
+      if (field instanceof HTMLElement) {
+        field.setAttribute("aria-invalid", message ? "true" : "false");
+        field.classList.toggle("is-invalid", Boolean(message));
+      }
+    };
+
+    const value = (name: string) => {
+      const field = form.elements.namedItem(name);
+      return field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement
+        ? field.value.trim()
+        : "";
+    };
+
+    const validate = () => {
+      const errors: Array<[string, string]> = [];
+
+      for (const field of form.querySelectorAll<HTMLElement>("[data-error-for]")) {
+        setError(field.dataset.errorFor || "", "");
+      }
+
+      // Pflichtfelder kommen aus der Konfiguration (data-required).
+      for (const input of form.querySelectorAll<
+        HTMLInputElement | HTMLTextAreaElement
+      >("[data-required]")) {
+        if (!input.value.trim()) errors.push([input.name, messages.required]);
+      }
+
+      const email = value("email");
+      if (email && !EMAIL_RE.test(email)) errors.push(["email", messages.email]);
+
+      const linkedin = value("linkedin");
+      if (linkedin && !LINKEDIN_RE.test(linkedin)) {
+        errors.push(["linkedin", messages.linkedin]);
+      }
+
+      // LinkedIn-Profil ODER geschäftliche E-Mail-Adresse.
+      if (dialog.dataset.rule === "linkedinOrCompanyEmail") {
+        const domain = email.split("@")[1]?.toLowerCase() ?? "";
+        const isFreemail = FREEMAIL.has(domain);
+        if (EMAIL_RE.test(email) && isFreemail && !linkedin) {
+          errors.push(["linkedin", messages.linkedinRequired]);
+        }
+      }
+
+      // Pro Feld nur die erste Meldung anzeigen.
+      const shown = new Set<string>();
+      for (const [name, message] of errors) {
+        if (shown.has(name)) continue;
+        shown.add(name);
+        setError(name, message);
+      }
+
+      if (errors.length) {
+        const first = form.querySelector<HTMLElement>(".is-invalid");
+        first?.focus();
+        return false;
+      }
+      return true;
+    };
+
+    // --- Mail bauen --------------------------------------------------------
+    const subject = dialog.dataset.mailSubject || "Anfrage";
+    const to = dialog.dataset.mailto || "";
+
+    const buildBody = () =>
+      mailFields
+        .map((f) => [f.label, value(f.name)] as const)
+        .filter(([, v]) => v)
+        .map(([label, v]) => `${label}: ${v}`)
+        .join("\n\n");
+
+    const buildUrl = (body: string) =>
+      `mailto:${to}?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    // Zu lange Mails würden von manchen Mail-Programmen abgeschnitten —
+    // lieber sichtbar kürzen, damit der Nutzer den Rest nachtragen kann.
+    // Gekürzt wird von hinten, Name und E-Mail stehen vorn und bleiben also
+    // erhalten. Die Grenze wird binär gesucht, weil die URL-Kodierung je nach
+    // Zeichen unterschiedlich stark aufbläht (ein "ä" wird zu sechs Zeichen)
+    // und sich die nötige Kürzung deshalb nicht direkt ausrechnen lässt.
+    const buildMailUrl = () => {
+      const full = buildBody();
+      if (buildUrl(full).length <= MAILTO_MAX) return buildUrl(full);
+
+      let lo = 0;
+      let hi = full.length;
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (buildUrl(`${full.slice(0, mid)} […]`).length <= MAILTO_MAX) lo = mid;
+        else hi = mid - 1;
+      }
+      return buildUrl(`${full.slice(0, lo).trimEnd()} […]`);
+    };
+
+    // --- Ansicht "fast geschafft" ------------------------------------------
+    const copyBtn = successView.querySelector<HTMLButtonElement>("[data-copy]");
+    const manual = successView.querySelector<HTMLTextAreaElement>("[data-manual]");
+    const manualLabel = successView.querySelector<HTMLElement>("[data-manual-label]");
+
+    const showManual = () => {
+      if (!manual || !manualLabel) return;
+      manual.hidden = false;
+      manualLabel.hidden = false;
+      manual.focus();
+      manual.select();
+    };
+
+    copyBtn?.addEventListener("click", async () => {
+      const text = manual?.value || "";
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = copyBtn.dataset.copiedLabel || "";
+        window.setTimeout(() => {
+          copyBtn.textContent = copyBtn.dataset.copyLabel || "";
+        }, 2500);
+      } catch {
+        // Kein Clipboard-Zugriff (z. B. ohne HTTPS) → Text zum Markieren zeigen.
+        showManual();
+      }
+    });
+
+    const showSuccess = (body: string) => {
+      if (manual) manual.value = `Betreff: ${subject}\n\n${body}`;
+      if (copyBtn) copyBtn.textContent = copyBtn.dataset.copyLabel || "";
+      if (manual) manual.hidden = true;
+      if (manualLabel) manualLabel.hidden = true;
+
+      formView.hidden = true;
+      successView.hidden = false;
+      const successTitle = successView.querySelector("[id]");
+      if (successTitle) dialog.setAttribute("aria-labelledby", successTitle.id);
+      panel.focus();
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      // Honeypot ausgefüllt → so tun, als sei alles gut, aber nichts öffnen.
+      const hp = form.elements.namedItem("website");
+      if (hp instanceof HTMLInputElement && hp.value) {
+        showSuccess("");
+        return;
+      }
+
+      if (!validate()) return;
+
+      // Zum Kopieren immer der ungekürzte Text — das Längenlimit gilt nur
+      // für die mailto:-URL, nicht für die Zwischenablage.
+      showSuccess(buildBody());
+      window.location.href = buildMailUrl();
+    });
+  }
+
+  for (const dialog of document.querySelectorAll<HTMLDialogElement>("dialog[data-modal-id]")) {
+    setupModal(dialog);
+  }
+</script>

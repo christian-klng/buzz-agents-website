@@ -16,8 +16,10 @@ const { data } = Astro.props;
     <a href={data.ctaSecondary.href} class="btn btn--secondary btn--sm nav__github"
       >{data.ctaSecondary.label}</a
     >
-    <a href={data.ctaPrimary.href} class="btn btn--primary btn--sm"
-      >{data.ctaPrimary.label}</a
+    <a
+      href={data.ctaPrimary.href}
+      class="btn btn--primary btn--sm"
+      data-modal={data.ctaPrimary.modal}>{data.ctaPrimary.label}</a
     >
   </div>
 </nav>
