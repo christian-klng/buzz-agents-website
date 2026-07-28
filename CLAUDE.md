@@ -82,7 +82,37 @@ gesammelt am Ende von `global.css` und lassen die Desktop-Werte unangetastet.
   Ohne JS bleiben die Stats sichtbar (Progressive Enhancement via `.js`-Klasse).
 - **FAQ-Akkordeon** — native `<details name="faq">` (exklusiv offen), erstes
   Item initial offen; +/− per CSS. Kein JS nötig.
+- **Anfrage-Modal** — natives `<dialog>` (`components/RequestModal.astro`),
+  siehe [Formular-Versand](#formular-versand).
 - Respektiert `prefers-reduced-motion`.
+
+## Formular-Versand
+
+Anfragen laufen über ein wiederverwendbares Modal (`RequestModal.astro`). Es
+gibt **keinen Server und keinen Formular-Dienst**: Das Formular validiert die
+Eingaben im Browser, baut daraus eine fertige E-Mail und öffnet sie per
+`mailto:` im Mail-Programm des Nutzers — die Seite bleibt statisch und es
+werden keine Formulardaten an uns übertragen (so steht es auch in
+`datenschutz.astro`, § 7).
+
+- **Konfiguration** liegt in `src/i18n/de.ts` → `forms`. Ein Block pro
+  Einsatzort, mit Feldern, Texten, Empfängeradresse (`mailTo`) und Betreff.
+- **Ausgelöst** wird das Modal von jedem Element mit `data-modal="<id>"`.
+  Dessen `href` bleibt der Fallback ohne JS und sollte deshalb ein
+  `mailto:` mit Betreff sein — nie ein toter Anker.
+- **Neuen Einsatzort ergänzen:** Block in `forms` anlegen, `<RequestModal>`
+  mit diesem Block in die Seite einbinden, `data-modal` an den Button.
+- **Regel `linkedinOrCompanyEmail`:** E-Mail ist immer Pflicht; bei einer
+  Freemail-Adresse (Liste `FREEMAIL` in der Komponente) wird zusätzlich das
+  LinkedIn-Profil verlangt.
+- **Grenzen:** `mailto:` bricht bei sehr langen Texten, deshalb `MAILTO_MAX`
+  (1900 Zeichen) und knappe `maxlength`-Werte. Öffnet sich kein Mail-Programm
+  (reine Webmail-Nutzer), bietet die Bestätigungsansicht den Text zum Kopieren.
+- Bots fängt ein Honeypot-Feld ab (`.form__hp`); kein Captcha (Datenschutz).
+
+Soll später echt serverseitig zugestellt werden (Zustellquote, Auto-Antwort,
+Ablage), ist der Ersatz lokal: `form.addEventListener("submit", …)` POSTet
+statt `window.location.href` zu setzen. Alles andere bleibt.
 
 ## Mehrsprachigkeit
 
@@ -113,7 +143,8 @@ setzen (für korrekte `canonical`/OG-URLs).
 
 ## Offene Platzhalter (aus `README.md`)
 
-- GitHub-Repo-URL, Docs-URL, Signup-Ziel (alle Links zeigen aktuell auf Anker).
+- GitHub-Repo-URL und Docs-URL (zeigen aktuell auf Anker). Der Nav-CTA
+  „Jetzt testen" öffnet inzwischen das Anfrage-Modal.
 - **Cloud-Preis „29 €" ist Platzhalter** (`src/i18n/de.ts` → `pricing`).
 - Zwei Produkt-Screenshots (aktuell Platzhalter in `Product.astro`).
 - **Impressum & Datenschutz** liegen als Entwurf vor (`src/pages/impressum.astro`,

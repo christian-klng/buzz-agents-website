@@ -9,6 +9,7 @@ import Pricing from "../components/Pricing.astro";
 import Faq from "../components/Faq.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Footer from "../components/Footer.astro";
+import RequestModal from "../components/RequestModal.astro";
 import { content } from "../i18n/de";
 ---
 
@@ -22,4 +23,5 @@ import { content } from "../i18n/de";
   <Faq data={content.faq} />
   <CtaSection data={content.cta} />
   <Footer data={content.footer} />
+  <RequestModal form={content.forms.alpha} messages={content.forms.messages} />
 </Base>

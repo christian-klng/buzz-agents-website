@@ -22,7 +22,14 @@ export const content = {
       { href: "#faq", label: "FAQ" },
     ],
     ctaSecondary: { href: "#opensource", label: "GitHub" },
-    ctaPrimary: { href: "#hosting", label: "Jetzt testen" },
+    // `modal` verweist auf einen Schlüssel in `forms` (siehe unten). Ohne JS
+    // bleibt `href` der Fallback — dann öffnet der Button direkt eine leere
+    // Mail statt des Formulars, tut also dasselbe, nur ohne Vorausfüllung.
+    ctaPrimary: {
+      href: "mailto:christian@buzz-agents.com?subject=Anfrage%3A%20Zugang%20zur%20Alpha%20von%20buzz%20agents",
+      label: "Jetzt testen",
+      modal: "alpha",
+    },
   },
 
   hero: {
@@ -179,6 +186,108 @@ export const content = {
       { href: "/datenschutz", label: "Datenschutz" },
     ],
     copyright: "© 2026 buzz agents",
+  },
+
+  // ---------------------------------------------------------------------
+  // Anfrage-Formulare (Modal)
+  //
+  // Ein Eintrag pro Einsatzort. Geöffnet wird das Modal über ein Element mit
+  // `data-modal="<schlüssel>"` — siehe components/RequestModal.astro.
+  // Neuen Einsatzort ergänzen = neuen Block hier anlegen, <RequestModal>
+  // in der Seite einbinden, `data-modal` an den Button schreiben.
+  //
+  // Versand läuft über `mailto:` — das Formular baut aus den Eingaben eine
+  // fertige E-Mail und öffnet sie im Mail-Programm des Nutzers. Es gibt keinen
+  // Server, der die Daten entgegennimmt (siehe CLAUDE.md → "Formular-Versand").
+  // ---------------------------------------------------------------------
+  forms: {
+    // Gemeinsame Validierungstexte für alle Formulare.
+    messages: {
+      required: "Bitte ausfüllen.",
+      email: "Bitte eine gültige E-Mail-Adresse angeben.",
+      linkedin:
+        "Bitte die vollständige Profil-URL angeben, z. B. https://www.linkedin.com/in/dein-profil",
+      linkedinRequired:
+        "Bei einer privaten E-Mail-Adresse brauchen wir zusätzlich dein LinkedIn-Profil.",
+    },
+
+    alpha: {
+      id: "alpha",
+      eyebrow: "Geschlossene Alpha",
+      headline: "Zugang zur Testversion anfragen",
+      intro:
+        "buzz agents ist noch in einer geschlossenen Alpha. Sag uns kurz, wer du bist — wir melden uns mit deinem Zugang.",
+      // Regel: LinkedIn-Profil ODER geschäftliche E-Mail-Adresse ist Pflicht.
+      // Bei einer Freemail-Adresse wird das LinkedIn-Feld zum Pflichtfeld.
+      rule: "linkedinOrCompanyEmail",
+      mailTo: "christian@buzz-agents.com",
+      mailSubject: "Anfrage: Zugang zur Alpha von buzz agents",
+      fields: [
+        {
+          name: "name",
+          label: "Name",
+          type: "text",
+          required: true,
+          placeholder: "Vor- und Nachname",
+          autocomplete: "name",
+          maxlength: 120,
+          help: "",
+        },
+        {
+          name: "email",
+          label: "E-Mail",
+          type: "email",
+          required: true,
+          placeholder: "du@deine-firma.de",
+          autocomplete: "email",
+          maxlength: 160,
+          help: "Am besten deine geschäftliche Adresse.",
+        },
+        {
+          name: "linkedin",
+          label: "LinkedIn-Profil",
+          type: "url",
+          required: false,
+          placeholder: "https://www.linkedin.com/in/dein-profil",
+          autocomplete: "url",
+          maxlength: 300,
+          help: "Pflicht, wenn du eine private E-Mail-Adresse angibst.",
+        },
+        {
+          name: "usecase",
+          // `mailLabel` wird in der E-Mail statt `label` verwendet — die Frage
+          // im Formular liest sich als Zeile in der Mail sonst schief.
+          label: "Wofür willst du buzz agents einsetzen?",
+          mailLabel: "Einsatzzweck",
+          type: "textarea",
+          required: false,
+          placeholder: "Ein, zwei Sätze genügen.",
+          autocomplete: "off",
+          // Bewusst knapp: die fertige Mail muss als mailto:-URL in die
+          // Adresszeile passen (siehe MAILTO_MAX in RequestModal.astro).
+          maxlength: 500,
+          help: "",
+        },
+      ],
+      // Kein Einwilligungs-Haken: die Angaben gehen nicht an unseren Server,
+      // sondern in dein eigenes Mail-Programm. Es gibt an dieser Stelle also
+      // nichts, worin eingewilligt werden könnte — nur den Hinweis.
+      note: "Deine Angaben werden nicht an uns übertragen — das Formular öffnet nur eine fertige E-Mail in deinem Mail-Programm. Wie wir deine Anfrage danach verarbeiten, steht in der <a href='/datenschutz'>Datenschutzerklärung</a>.",
+      submitLabel: "E-Mail vorbereiten",
+      closeLabel: "Schließen",
+      success: {
+        headline: "Fast geschafft.",
+        body: "Dein Mail-Programm sollte sich jetzt mit einer fertigen Nachricht geöffnet haben. Bitte schick sie noch ab — erst dann erreicht uns deine Anfrage.",
+      },
+      // Wenn sich kein Mail-Programm öffnet (z. B. bei reinen Webmail-Nutzern),
+      // kann der Text hierüber kopiert und von Hand verschickt werden.
+      fallback: {
+        body: "Es hat sich nichts geöffnet? Dann kopier deine Anfrage und schick sie an",
+        copyLabel: "Anfrage kopieren",
+        copiedLabel: "Kopiert.",
+        manualLabel: "Anfrage zum Kopieren",
+      },
+    },
   },
 } as const;
 
