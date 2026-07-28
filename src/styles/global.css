@@ -286,29 +286,15 @@ h1, h2, p {
    links (schmale Spalte) und das Bild rechts (breite Spalte) stehen. */
 .product__row--reverse .product__shot { order: 1; }
 .product__shot {
-  aspect-ratio: 16 / 10;
   border: 1px solid var(--border-soft);
   border-radius: 16px;
   overflow: hidden;
-  /* Platzhalter-Look bis echte Screenshots vorliegen */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      rgba(240, 241, 230, 0.03),
-      rgba(240, 241, 230, 0.03) 12px,
-      transparent 12px,
-      transparent 24px
-    );
-  color: rgba(240, 241, 230, 0.4);
-  font-size: 14px;
-  text-align: center;
-  padding: 24px;
+  background: rgba(240, 241, 230, 0.02);
 }
-.product__row--reverse .product__shot {
-  order: -1;
+.product__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .product__label {
   color: var(--signal);

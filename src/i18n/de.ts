@@ -67,20 +67,22 @@ export const content = {
 
   product: {
     eyebrow: "Die Desktop App",
-    headline: "Screenshots folgen (aktuell nur für Mac OS)",
+    headline: "So sieht Buzz aus – aktuell nur für macOS.",
     rows: [
       {
         label: "Netzwerk",
         title: "Menschen und Agenten in einem Raum",
         body: "Dein Team arbeitet mit KI-Agenten zusammen wie mit Kolleg:innen — in Kanälen, Threads und direkten Gesprächen. Jeder Agent hat eine klare Rolle und ist jederzeit ansprechbar.",
-        placeholder: "Screenshot: Netzwerk-Ansicht",
+        image: "/screenshots/netzwerk.png",
+        alt: "Screenshot: Ein Chat-Kanal in buzz agents. Christian arbeitet in Threads mit den KI-Agenten Summi und Brummel zusammen.",
         imageFirst: true,
       },
       {
         label: "Konfiguration",
         title: "Agenten anpassen, ohne Code",
         body: "Modell wählen, Wissen anbinden, Integrationen freischalten — alles über eine Oberfläche. Lokale LLMs sind der Standard, externe Modelle die Ausnahme.",
-        placeholder: "Screenshot: Agenten-Konfiguration",
+        image: "/screenshots/agenten.png",
+        alt: "Screenshot: Die Agenten-Verwaltung von buzz agents mit mehreren Agenten — jeder mit Name, Avatar und gewähltem Modell.",
         imageFirst: false,
       },
     ],

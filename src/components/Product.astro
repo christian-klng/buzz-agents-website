@@ -13,7 +13,9 @@ const { data } = Astro.props;
     {
       data.rows.map((row) => (
         <div class={`product__row${row.imageFirst ? "" : " product__row--reverse"}`}>
-          <div class="product__shot">{row.placeholder}</div>
+          <div class="product__shot">
+            <img src={row.image} alt={row.alt} loading="lazy" decoding="async" />
+          </div>
           <div>
             <p class="product__label">{row.label}</p>
             <h3 class="product__title">{row.title}</h3>
