@@ -187,6 +187,13 @@ export const content = {
       { href: "/impressum", label: "Impressum" },
       { href: "/datenschutz", label: "Datenschutz" },
     ],
+    // Vertrauens-Hinweise über dem Copyright. `icon` verweist auf ein
+    // Inline-SVG in components/Footer.astro — neues Icon dort ergänzen,
+    // dann hier den Schlüssel eintragen.
+    badges: [
+      { icon: "opensource", label: "Souveräne Künstliche Intelligenz" },
+      { icon: "germany", label: "Serverstandort in Deutschland" },
+    ],
     copyright: "© 2026 buzz agents",
   },
 

@@ -2,6 +2,20 @@
 import type { Content } from "../i18n/de";
 type Props = { data: Content["footer"] };
 const { data } = Astro.props;
+
+// Icons für die Vertrauens-Hinweise (`footer.badges` in i18n/de.ts).
+// Schlüssel = `icon`-Wert im Inhalt, Zeichenfläche jeweils 24×24.
+// Stil wie der Rest der Seite: nur `currentColor`, keine Flächenfarben,
+// keine Emoji. Die `transform`-Skalierungen sind Feinabstimmung, damit
+// beide Icons neben dem 13px-Text gleich schwer wirken — nicht anfassen,
+// ohne das Ergebnis im Fuß gegenzuprüfen.
+const ICONS: Record<Content["footer"]["badges"][number]["icon"], string> = {
+  // Code-Klammern </> — quelloffener, nachlesbarer Code.
+  opensource: `<g transform="translate(-1.2 -1.2) scale(1.1)" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7.5 3.5 12 9 16.5"/><path d="M15 7.5 20.5 12 15 16.5"/><path d="M13.4 5.6 10.6 18.4"/></g>`,
+  // Vereinfachter Umriss Deutschlands. Bewusst einfarbig statt
+  // Flaggen-Schwarz-Rot-Gold — die Palette der Seite bleibt unberührt.
+  germany: `<path transform="translate(2.16 2.16) scale(0.82)" fill="currentColor" d="M10.2 1.7 11.4 2.8 13.3 2.8 12.6 4.1 13.7 4.3 14.8 3.5 15.5 2.8 17.1 2.5 18.7 4.2 18.9 6.1 19.2 8.6 19.9 11.4 20 12.8 18.9 12.7 17.5 13.1 15.5 14.1 14.8 14.3 14.8 14.9 16.4 17.2 17.8 19.3 16.5 21.7 16.3 22.4 13.4 22.4 11.1 22.5 9.4 22.1 6.9 22 7.8 18 5.6 17.6 4.7 16.8 4.3 14.8 4 13.1 4.2 10 5.3 8.2 5.9 7.8 5.9 6 6.2 5.4 7.8 5.1 8.7 4.3 8.8 3.2 8.7 1.5Z"/>`,
+};
 ---
 
 <footer class="footer">
@@ -17,5 +31,15 @@ const { data } = Astro.props;
   </nav>
 </footer>
 <div class="subfooter">
+  <ul class="footer__badges">
+    {
+      data.badges.map((b) => (
+        <li class="footer__badge">
+          <svg class="footer__badge-icon" viewBox="0 0 24 24" aria-hidden="true" set:html={ICONS[b.icon]} />
+          <span>{b.label}</span>
+        </li>
+      ))
+    }
+  </ul>
   <span>{data.copyright}</span>
 </div>
