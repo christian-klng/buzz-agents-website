@@ -541,6 +541,30 @@ h1, h2, p {
   font-size: 13px;
   color: rgba(240, 241, 230, 0.4);
   border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.footer__badges {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.footer__badge {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.footer__badge-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--text-3);
 }
 
 /* =========================================================================
@@ -826,6 +850,8 @@ h1, h2, p {
   .product__row--reverse .product__shot { order: 0; }
   .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
   .nav__links { display: none; }
+  /* Copyright unter die Hinweise, sonst quetscht sich die Zeile. */
+  .subfooter { flex-direction: column; align-items: flex-start; gap: 18px; }
 }
 
 @media (max-width: 560px) {
@@ -837,5 +863,6 @@ h1, h2, p {
   .features-grid { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
   .footer { flex-direction: column; gap: 24px; }
+  .footer__badges { flex-direction: column; align-items: flex-start; gap: 12px; }
   .nav__actions .nav__github { display: none; }
 }
